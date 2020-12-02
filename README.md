@@ -1,26 +1,29 @@
-# Pagination
+# Angular Pagination
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.4.
+This project created to support server-side pagination. once your api response is paginationed, this package once called allows you to make calls to the backend with page parameters.
 
-## Development server
+## How it works
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+-   Install the package
 
-## Code scaffolding
+-   Import it to your module `app.module.ts`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This enables you to call this package anywhere in your angular application.
 
-## Build
+Use this way
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```<sm-server-pagination [pageSettings]="pageSettings" [pageSize]="pageSize" [page]="page" (paginationOutput)="setNewPage($event)" (dataToShow)="showMoreData($event)"></sm-server-pagination>```
+## Set Your parameters
 
-## Running unit tests
+Lets take this as a sample response from an endpoint
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```page_info: {page: 0, limit: 10, total: 27, total_pages: 3} users: [{id: 256, first_name: "", last_name: "", phone_number: "07034137663"}]```
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```Javascript
+const pageSettings = page_info // this is the page_info object reutned from the API 
+const pageSize = 10 // This is basically your page limit, could be any value 
+const page = page_info.page // This is the current page
+```
 
 ## Further help
 
